@@ -10,6 +10,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function (){
+            
 
             // USER MANAGEMENT ROUTE
             Route::middleware('api')
@@ -17,7 +18,16 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->name('role.')
                 ->group(base_path('routes/Role/role.php'));
 
+            Route::middleware('api')
+               ->prefix('api/user')
+               ->name('user.')
+               ->group(base_path('routes/User/User.php'));
+               Route::middleware('api')
+               ->prefix('api/menu')
+               ->name('menu.')
+               ->group(base_path('routes/Menu/Menu.php'));
         }
+        
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
